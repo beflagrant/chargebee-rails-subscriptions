@@ -16,25 +16,16 @@ This is the Rails gem for integrating with Chargebee. If you're new to Chargebee
 
 [Metered Billing](#metered-billing)
 
-
-
-
-
-
-
-
-
-
 # Introduction
 
-This ruby gem provides you with a set of boilerplate classes to accelerate the implementation of a subscription billing module onto your rails application. 
+This ruby gem provides you with a set of boilerplate classes to accelerate the implementation of a subscription billing module onto your rails application.
 
 The gem can automatically handle:
 
    * Setting up of relevant db models to store subscription data.
 
    * Upgrade/downgrade of subscriptions.
-   
+
    * Coupons.
 
    * Webhooks from Chargebee to ensure the data is in sync.
@@ -54,7 +45,7 @@ Apart from this, the gem also supports:
 ```ruby
 
     ruby > 2.0.0
-    rails > 4.2.4
+    rails > 5.1
 
 ```
 
@@ -125,16 +116,16 @@ Now, you will have models and database tables set for subscriptions, plans, paym
 ### Step 3: Set up Chargebee
 
 
-Configure your Chargebee site name and API key in the `config/initializers/chargebee_rails.rb` file. 
+Configure your Chargebee site name and API key in the `config/initializers/chargebee_rails.rb` file.
 
 ```ruby
 
     #The API key can be found in your Chargebee site under Settings> API & WEBHOOKS > API Keys
 
-    config.chargebee_site = 'CHARGEBEE_SITE' 
+    config.chargebee_site = 'CHARGEBEE_SITE'
 
     #The API key can be found in your Chargebee site under Settings> API & WEBHOOKS > API Keys
-    
+
     config.chargebee_api_key = 'CHARGEBEE_API_KEY
 
 ```
@@ -147,12 +138,12 @@ Payment Gateway credentials have to be set up in Chargebee under *Settings> Site
 
 ## Webhook notifications
 
-You can set up basic authentication for your incoming webhook notifications in `config/initializers/chargebee_rails.rb` file. 
+You can set up basic authentication for your incoming webhook notifications in `config/initializers/chargebee_rails.rb` file.
 
 ```ruby
 
     config.secure_webhook_api = true
-    
+
     config.webhook_authentication = {user: username, secret: password}
 
 ```
@@ -166,7 +157,7 @@ If you’d like to use a different controller to handle webhooks, you can extend
 ```ruby
 
     #The username and password should match the ones specified in your Chargebee site settings under Settings> API & WEBHOOKS> Webhook Settings
-    
+
     config.webhook_handler = 'webhook_overriding_controller_name'
 
 ```
@@ -187,13 +178,13 @@ Configure the webhook url in Chargebee under *API & Webhooks> Webhook* Settings.
 
 ```ruby
 
-    config.webhook_api_path = 'chargebee_rails_event' 
+    config.webhook_api_path = 'chargebee_rails_event'
 
 ```
 
-*chargebee_rails_event* is the path you can use to receive events from Chargebee to your application. 
+*chargebee_rails_event* is the path you can use to receive events from Chargebee to your application.
 
-The webhook url for your site will be  _http(s)://&lt;your-domain&gt;.com/chargebee_rails_event_. 
+The webhook url for your site will be  _http(s)://&lt;your-domain&gt;.com/chargebee_rails_event_.
 
 
 ## Sync plans
@@ -230,31 +221,31 @@ Chargebee attempts to send webhook notifications for upto 2 days. After 2 days, 
 The event types listed below are synced with the application by this gem
 
 *  subscription_started
- 
+
 *  subscription_trial_end_reminder
- 
+
 *  subscription_activated
- 
+
 *  subscription_changed
- 
+
 *  subscription_cancellation_scheduled
- 
+
 *  subscription_cancellation_reminder
- 
+
 *  subscription_cancelled
- 
+
 *  subscription_reactivated
- 
+
 *  subscription_renewed
- 
+
 *  subscription_scheduled_cancellation_removed
- 
+
 *  subscription_renewal_reminder
- 
+
 *  card_expired
- 
+
 *  card_updated
- 
+
 *  card_expiry_reminder
 
 
@@ -291,10 +282,10 @@ The subscription's default [term end](https://apidocs.chargebee.com/docs/api/sub
 
 ```
 
-If the above parameter is set to true, subscription changes will be made at the end of term or during next renewal. 
+If the above parameter is set to true, subscription changes will be made at the end of term or during next renewal.
 
  ```ruby
- 
+
     config.proration = true
 
 ```
@@ -304,10 +295,10 @@ If the above parameter is set to true, prorated charges will be applied during s
 If you’d like to include delayed charges during [update_subscription_estimate](https://apidocs.chargebee.com/docs/api/estimates#update_subscription_estimate), you can specify the *include_delayed_charges* parameter in `config/initializers/chargebee_rails.rb`.
 
  ```ruby
- 
-    config.include_delayed_charges = { 
-      changes_estimate: false, 
-      renewal_estimate: true 
+
+    config.include_delayed_charges = {
+      changes_estimate: false,
+      renewal_estimate: true
     }
 
  ```
@@ -317,9 +308,9 @@ If you’d like to include delayed charges during [update_subscription_estimate]
 **Retrieve as Chargebee Customer**
 
  ```ruby
-    
+
     customer = Customer.first
-    
+
     customer.as_chargebee_customer
 
  ```
@@ -327,19 +318,19 @@ If you’d like to include delayed charges during [update_subscription_estimate]
 **Update a Customer**
 
  ```ruby
- 
+
     ChargebeeRails.update_customer(customer, {})
 
-``` 
-    
+```
+
 **Update billing info for a Customer**
 
 ```ruby
-  
+
     ChargebeeRails.update_billing_addr(customer, {})
-  
+
 ```
-  
+
 **Update contacts for a customer**
 
 ```ruby
@@ -354,75 +345,75 @@ If you’d like to include delayed charges during [update_subscription_estimate]
 **Create a Subscription**
 
  ```ruby
- 
+
     customer = Customer.find(1)
-    
+
     customer.subscribe(customer: customer_params)
 
  ```
- 
+
  **Update a Subscription**
- 
+
  ```ruby
- 
+
     customer.update_subscription(plan_id: params[:plan_id], coupon: params[:coupon_id])
- 
+
  ```
- 
+
  **Retrieve a Subscription**
- 
+
   ```ruby
- 
+
     subscription = customer.subscription
-  
+
     subscription.as_chargebee_subscription
-    
+
    ```
- 
+
  **Update Plan for a Subscription**
- 
+
 ```ruby
- 
+
     subscription.change_plan(plan_object, end_of_term=false)   # end_of_term is optional
- 
+
  ```
- 
+
 **Update Plan quantity for a Subscription**
- 
+
  ```ruby
- 
+
     subscription.set_plan_quantity(quantity, end_of_term=false)  # end_of_term is optional
- 
+
  ```
- 
+
  **Add Or remove Addons for a Subscription**
-  
+
  ```ruby
- 
+
     subscription.manage_addons(addon_id, quantity=1)
 
  ```
- 
+
  **Cancel a Subscription**
- 
+
  ```ruby
- 
+
     subscription.cancel(params)
 
  ```
- 
+
  **Remove scheduled cancellation for a Subscription**
 
  ``` ruby
- 
+
     subscription.stop_cancellation
- 
+
   ```
 
 
 # Metered billing
 
-If you’d like to charge your customers based on usage, you could enable the Metered Billing option. This option can be enabled by checking the *Notify and wait to close invoices* option under *Settings> Site Settings> Site* Info. 
+If you’d like to charge your customers based on usage, you could enable the Metered Billing option. This option can be enabled by checking the *Notify and wait to close invoices* option under *Settings> Site Settings> Site* Info.
 
 **Note:** The above mentioned webhook configuration is mandatory for Metered Billing.
 
@@ -461,7 +452,7 @@ Use the below API method to add the line items to the pending invoice after you 
 
 If you’d like us to guide you through the set up process or if you have any questions regarding the Ruby gem implementation, contact us at chargebee@spritle.com. For feature requests or feedback, submit [here](https://github.com/spritlesoftware/chargebee-rails-subscriptions/issues/new).
 
-If you have questions regarding how Chargebee works, send an email to support@chargebee.com. 
+If you have questions regarding how Chargebee works, send an email to support@chargebee.com.
 
 ## Pull requests
 
@@ -470,4 +461,3 @@ If you’ve added new functionalities that you think might be helpful for all, d
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-

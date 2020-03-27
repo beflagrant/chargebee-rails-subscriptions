@@ -1,113 +1,268 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://dummy-api-key:@dummy-site.chargebee.com/api/v1/customers/IG5ryicPgRSUWg1O0h
+    method: post
+    uri: https://dummy-site.chargebee.com/api/v2/invoices/draft_inv23423/add_charge
+    body:
+      encoding: UTF-8
+      string: amount=50&description=New+Plan
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Chargebee-Ruby-Client v2.7.4
+      Lang-Version:
+      - 2.6.5
+      Os-Version:
+      - x86_64-darwin18
+      Content-Length:
+      - '30'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - dummy-site.chargebee.com
+      Authorization:
+      - Basic dGVzdF9lTURkcXJIbUgyWFlha0g5T1NCY0dRamhXU0lEcW9iQzo=
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Fri, 27 Mar 2020 16:18:13 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=604800; includeSubDomains; preload
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      Server:
+      - ChargeBee
+    body:
+      encoding: ASCII-8BIT
+      string: '{"message":"draft_inv23423 not found","type":"invalid_request","api_error_code":"resource_not_found","error_code":"resource_not_found","error_msg":"draft_inv23423
+        not found","http_status_code":404}'
+    http_version: null
+  recorded_at: Fri, 27 Mar 2020 16:18:13 GMT
+- request:
+    method: post
+    uri: https://dummy-site.chargebee.com/api/v2/invoices/draft_inv23423/add_addon_charge
+    body:
+      encoding: UTF-8
+      string: addon_id=ssl&addon_quantity=1
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Chargebee-Ruby-Client v2.7.4
+      Lang-Version:
+      - 2.6.5
+      Os-Version:
+      - x86_64-darwin18
+      Content-Length:
+      - '29'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - dummy-site.chargebee.com
+      Authorization:
+      - Basic dGVzdF9lTURkcXJIbUgyWFlha0g5T1NCY0dRamhXU0lEcW9iQzo=
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Fri, 27 Mar 2020 16:18:13 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=604800; includeSubDomains; preload
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      Server:
+      - ChargeBee
+    body:
+      encoding: ASCII-8BIT
+      string: '{"message":"draft_inv23423 not found","type":"invalid_request","api_error_code":"resource_not_found","error_code":"resource_not_found","error_msg":"draft_inv23423
+        not found","http_status_code":404}'
+    http_version: null
+  recorded_at: Fri, 27 Mar 2020 16:18:13 GMT
+- request:
+    method: post
+    uri: https://dummy-site.chargebee.com/api/v2/invoices/draft_inv23423/close
     body:
       encoding: US-ASCII
       string: ''
     headers:
       Accept:
       - application/json
-      Accept-Encoding:
-      - gzip, deflate
       User-Agent:
-      - Chargebee-Ruby-Client v1.7.1
+      - Chargebee-Ruby-Client v2.7.4
+      Lang-Version:
+      - 2.6.5
+      Os-Version:
+      - x86_64-darwin18
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - dummy-site.chargebee.com
+      Authorization:
+      - Basic dGVzdF9lTURkcXJIbUgyWFlha0g5T1NCY0dRamhXU0lEcW9iQzo=
   response:
     status:
-      code: 200
-      message: OK
+      code: 404
+      message: Not Found
     headers:
-      Cache-Control:
-      - no-store, no-cache, must-revalidate
-      Content-Type:
-      - application/json;charset=utf-8
       Date:
-      - Mon, 04 Apr 2016 12:41:00 GMT
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
-      Pragma:
-      - no-cache
-      Server:
-      - ChargeBee
-      Content-Length:
-      - '420'
+      - Fri, 27 Mar 2020 16:18:14 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
       Connection:
       - keep-alive
+      Strict-Transport-Security:
+      - max-age=604800; includeSubDomains; preload
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      Server:
+      - ChargeBee
     body:
-      encoding: UTF-8
-      string: |-
-        {"customer": {
-            "id": "IG5ryicPgRSUWg1O0h",
-            "first_name": "Marq",
-            "last_name": "Marquez",
-            "email": "marq@example.net",
-            "phone": "8432942342",
-            "auto_collection": "on",
-            "allow_direct_debit": false,
-            "created_at": 1458889220,
-            "taxability": "taxable",
-            "object": "customer",
-            "card_status": "no_card",
-            "account_credits": 0,
-            "refundable_credits": 0,
-            "excess_payments": 0
-        }}
-    http_version: 
-  recorded_at: Mon, 04 Apr 2016 12:41:00 GMT
+      encoding: ASCII-8BIT
+      string: '{"message":"draft_inv23423 not found","type":"invalid_request","api_error_code":"resource_not_found","error_code":"resource_not_found","error_msg":"draft_inv23423
+        not found","http_status_code":404}'
+    http_version: null
+  recorded_at: Fri, 27 Mar 2020 16:18:14 GMT
 - request:
     method: get
-    uri: https://test_Qcu3cdvNbn4DqcDcdRlGOV7V63S2TAQHzIn:@spritle-test.chargebee.com/api/v1/customers/IG5ryicPgRSUWg1O0h
+    uri: https://dummy-site.chargebee.com/api/v2/customers/cbdemo_dave
     body:
       encoding: US-ASCII
       string: ''
     headers:
       Accept:
       - application/json
-      Accept-Encoding:
-      - gzip, deflate
       User-Agent:
-      - Chargebee-Ruby-Client v1.7.1
+      - Chargebee-Ruby-Client v2.7.4
+      Lang-Version:
+      - 2.6.5
+      Os-Version:
+      - x86_64-darwin18
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - dummy-site.chargebee.com
+      Authorization:
+      - Basic dGVzdF9lTURkcXJIbUgyWFlha0g5T1NCY0dRamhXU0lEcW9iQzo=
   response:
     status:
       code: 200
       message: OK
     headers:
-      Cache-Control:
-      - no-store, no-cache, must-revalidate
+      Date:
+      - Fri, 27 Mar 2020 16:18:14 GMT
       Content-Type:
       - application/json;charset=utf-8
-      Date:
-      - Mon, 04 Apr 2016 14:07:11 GMT
+      Content-Length:
+      - '1721'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
       Expires:
       - Thu, 01 Jan 1970 00:00:00 UTC
+      Strict-Transport-Security:
+      - max-age=604800; includeSubDomains; preload
       Pragma:
       - no-cache
       Server:
       - ChargeBee
-      Content-Length:
-      - '420'
-      Connection:
-      - keep-alive
     body:
       encoding: UTF-8
       string: |-
-        {"customer": {
-            "id": "IG5ryicPgRSUWg1O0h",
-            "first_name": "Marq",
-            "last_name": "Marquez",
-            "email": "marq@example.net",
-            "phone": "8432942342",
-            "auto_collection": "on",
-            "allow_direct_debit": false,
-            "created_at": 1458889220,
-            "taxability": "taxable",
-            "object": "customer",
-            "card_status": "no_card",
-            "account_credits": 0,
-            "refundable_credits": 0,
-            "excess_payments": 0
-        }}
-    http_version: 
-  recorded_at: Mon, 04 Apr 2016 14:07:12 GMT
-recorded_with: VCR 3.0.1
+        {
+            "customer": {
+                "id": "cbdemo_dave",
+                "first_name": "Dave",
+                "last_name": "Moss",
+                "email": "dave@example.com",
+                "phone": "734-389-7473",
+                "company": "Moss Enterprises",
+                "auto_collection": "on",
+                "net_term_days": 0,
+                "allow_direct_debit": false,
+                "created_at": 1520079709,
+                "taxability": "taxable",
+                "updated_at": 1583065309,
+                "pii_cleared": "active",
+                "resource_version": 1583065309000,
+                "deleted": false,
+                "object": "customer",
+                "card_status": "valid",
+                "primary_payment_source_id": "pm_16BRIvRs5kb3W5R",
+                "payment_method": {
+                    "object": "payment_method",
+                    "type": "card",
+                    "reference_id": "tok___dev__XpbBrRkRdXlZnFBh",
+                    "gateway": "chargebee",
+                    "gateway_account_id": "gw_16BRIvRs5katE5M",
+                    "status": "valid"
+                },
+                "promotional_credits": 0,
+                "refundable_credits": 0,
+                "excess_payments": 0,
+                "unbilled_charges": 0,
+                "preferred_currency_code": "USD"
+            },
+            "card": {
+                "status": "valid",
+                "gateway": "chargebee",
+                "gateway_account_id": "gw_16BRIvRs5katE5M",
+                "iin": "378282",
+                "last4": "0005",
+                "card_type": "american_express",
+                "funding_type": "not_known",
+                "expiry_month": 7,
+                "expiry_year": 2022,
+                "billing_zip": "600059",
+                "created_at": 1583151709,
+                "updated_at": 1583151709,
+                "resource_version": 1583151709000,
+                "object": "card",
+                "masked_number": "***********0005",
+                "customer_id": "cbdemo_dave",
+                "payment_source_id": "pm_16BRIvRs5kb3W5R"
+            }
+        }
+    http_version: null
+  recorded_at: Fri, 27 Mar 2020 16:18:14 GMT
+recorded_with: VCR 5.1.0
