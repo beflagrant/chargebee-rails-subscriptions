@@ -6,7 +6,7 @@ require 'chargebee_rails/version'
 Gem::Specification.new do |spec|
   spec.name          = "chargebee_rails"
   spec.version       = ChargebeeRails::VERSION
-  spec.authors       = ["Chargebee", "Spritle", "Be Flagrant"]
+  spec.authors       = ["Chargebee", "Spritle", "Flagrant"]
   spec.email         = ["rave@beflagrant.com"]
 
   spec.summary       = %q{A subscription management gem for Rails with ChargeBee.}
@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
 
-  spec.add_dependency "chargebee", '>= 2.7.4'
+  spec.add_dependency "chargebee", '>= 2.7.5'
 
   spec.add_development_dependency "rails", ">= 5.1"
   spec.add_development_dependency "bundler", "~> 2.1.4"

@@ -1,6 +1,7 @@
 module ChargebeeRails
   class WebhooksController < ActionController::Base
     include WebhookHandler
+    skip_before_action :verify_authenticity_token
     before_action :authenticate, if: :chargebee_configuration_webhook
 
     # Handle ChargeBee webhook events
