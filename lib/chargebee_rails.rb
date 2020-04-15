@@ -10,6 +10,7 @@ require "chargebee_rails/subscription"
 require "chargebee_rails/subscription_builder"
 require "chargebee_rails/hosted_page_subscription_manager"
 require "chargebee_rails/customer"
+require "chargebee_rails/customer_builder"
 require "chargebee_rails/metered_billing"
 require "chargebee_rails/sync_plans"
 
