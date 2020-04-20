@@ -16,6 +16,12 @@ module ChargebeeRails
       @subscription
     end
 
+    def retrieve
+      build_subscription_payload
+      retrieve_subscriptions
+      @subscription
+    end
+
     # Update existing subscription in Chargebee,
     # the resulting subscription details are then updated in application
     def update
@@ -36,6 +42,12 @@ module ChargebeeRails
       @subscription = @customer.create_subscription(subscription_attrs) # Create an active record subscription of the chargebee subscription object for the customer
     end
 
+    # Retrieve a subscription from Chargebee with the passed options payload
+    def retrieve_subscriptions
+      @result = ChargeBee::Subscription.retrieve(@options[:subscription_id])
+      @subscription = @customer.create_subscription(subscription_attrs) # Create an active record subscription of the chargebee subscription object for the customer
+    end
+
     # Update subscription in ChargeBee and the application model
     def update_subscriptions
       @subscription = @customer.subscription
@@ -45,7 +57,7 @@ module ChargebeeRails
       @subscription.update(subscription_attrs)
     end
 
-    # Update payment method for subscrption if one exists or create new one
+    # Update payment method for subscription if one exists or create new one
     def manage_payment_method
       @subscription.payment_method.present? &&
       @subscription.payment_method.update(payment_method_attrs) ||
@@ -64,7 +76,7 @@ module ChargebeeRails
     def build_subscription_payload
       @options[:trial_end] = 0 if @options[:skip_trial]
       @options[:plan_id] ||= ChargebeeRails.configuration.default_plan_id
-      raise PlanError.new.plan_not_configureed unless @options[:plan_id]
+      raise PlanError.new.plan_not_configured unless @options[:plan_id]
       @plan = Plan.find_by(plan_id: @options[:plan_id])
       raise PlanError.new.plan_not_found unless @plan
     end
@@ -91,9 +103,10 @@ module ChargebeeRails
 
     def subscription_attrs
       {
-        chargebee_id: chargebee_subscription.id,
-        status: chargebee_subscription.status,
-        plan_quantity: chargebee_subscription.plan_quantity,
+        customer_id:    chargebee_customer.id,
+        chargebee_id:   chargebee_subscription.id,
+        status:         chargebee_subscription.status,
+        plan_quantity:  chargebee_subscription.plan_quantity,
         chargebee_data: chargebee_subscription_data,
         plan: @plan
       }
@@ -157,6 +170,5 @@ module ChargebeeRails
         status: chargebee_payment_method.status
       }
     end
-
   end
 end

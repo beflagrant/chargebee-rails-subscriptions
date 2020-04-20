@@ -29,6 +29,10 @@ module ChargebeeRails
       SubscriptionBuilder.new(self, options).create
     end
 
+    def retrieve_subscription(options = {})
+      SubscriptionBuilder.new(self, options).retrieve
+    end
+
     # Subscribe customer to a new subscription in chargebee via chargebee's hosted page.
     # * *Args*    :
     #   - +hosted_page+ -> the +hosted_page+ returned by chargebee
@@ -82,6 +86,10 @@ module ChargebeeRails
     #
     def invoices
       ChargeBee::Invoice.invoices_for_customer(chargebee_id).map(&:invoice)
+    end
+
+    def create_subscription
+      raise NotImplementedError, "subclass did not define #create_subscription"
     end
   end
 end

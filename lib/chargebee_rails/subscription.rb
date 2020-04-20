@@ -11,6 +11,10 @@ module ChargebeeRails
       ChargeBee::Subscription.retrieve(chargebee_id).subscription
     end
 
+    def create_subscription(options = {})
+      SubscriptionBuilder.new(self, options).create
+    end
+
     #
     # Update the plan for a subscription
     # * *Args*    :
