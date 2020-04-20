@@ -198,40 +198,40 @@ module ChargebeeRails
       obj.first && (obj.first.event_last_modified_at.to_i < event.occurred_at)
     end
 
-    def subscription_attrs subscription
+    def subscription_attrs(subscription)
       {
-        chargebee_id: subscription.id,
-        plan_id: ::Plan.find_by(plan_id: subscription.plan_id).id,
-        plan_quantity: subscription.plan_quantity,
-        status: subscription.status,
+        chargebee_id:           subscription.id,
+        plan_id:                ::Plan.find_by(plan_id: subscription.plan_id).id,
+        plan_quantity:          subscription.plan_quantity,
+        status:                 subscription.status,
         event_last_modified_at: Time.at(event.occurred_at),
-        updated_at: Time.now,
-        chargebee_data: chargebee_subscription_data(subscription)
+        updated_at:             Time.now,
+        chargebee_data:         chargebee_subscription_data(subscription)
       }
     end
 
-    def chargebee_subscription_data subscription
+    def chargebee_subscription_data(subscription)
       {
-        trial_ends_at: subscription.trial_end,
-        next_renewal_at: subscription.current_term_end,
-        cancelled_at: subscription.cancelled_at,
+        trial_ends_at:           subscription.trial_end,
+        next_renewal_at:         subscription.current_term_end,
+        cancelled_at:            subscription.cancelled_at,
         is_scheduled_for_cancel: (subscription.status == 'non-renewing' ? true : false),
-        has_scheduled_changes: subscription.has_scheduled_changes,
-        addons: subscription.addons
+        has_scheduled_changes:   subscription.has_scheduled_changes,
+        addons:                  subscription.addons
       }
     end
 
-    def payment_method_attrs customer, card
+    def payment_method_attrs(customer, card)
       {
-        cb_customer_id: customer.id,
-        auto_collection: customer.auto_collection,
-        payment_type: customer.payment_method.type,
-        reference_id: customer.payment_method.reference_id,
-        card_last4: card && card.last4,
-        card_type: card && card.card_type,
-        status: customer.payment_method.status,
+        cb_customer_id:         customer.id,
+        auto_collection:        customer.auto_collection,
+        payment_type:           customer.payment_method.type,
+        reference_id:           customer.payment_method.reference_id,
+        card_last4:             card && card.last4,
+        card_type:              card && card.card_type,
+        status:                 customer.payment_method.status,
         event_last_modified_at: Time.at(event.occurred_at),
-        updated_at: Time.now
+        updated_at:             Time.now
       }
     end
 
