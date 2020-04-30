@@ -88,14 +88,14 @@ module ChargebeeRails
 
   private
 
-  def chargebee_customer_data customer
+  def self.chargebee_customer_data customer
     {
       customer_details: customer_details(customer),
       billing_address: billing_address(customer.billing_address)
     }
   end
 
-  def customer_details customer
+  def self.customer_details customer
     {
       first_name: customer.first_name,
       last_name: customer.last_name,
@@ -105,7 +105,7 @@ module ChargebeeRails
     }
   end
 
-  def billing_address customer_billing_address
+  def self.billing_address customer_billing_address
     {
       first_name: customer_billing_address.first_name,
       last_name: customer_billing_address.last_name,
