@@ -1,6 +1,8 @@
 module ChargebeeRails
   class HostedPageSubscriptionManager
 
+    attr_reader :customer, :hosted_page
+
     def initialize(customer, hosted_page)
       @customer = customer
       @hosted_page = hosted_page
@@ -45,11 +47,11 @@ module ChargebeeRails
     end
 
     def hosted_subscription
-      @hosted_subscription ||= @hosted_page.content.subscription
+      @hosted_subscription ||= @hosted_page.hosted_page.content.subscription
     end
 
     def hosted_customer
-      @hosted_customer ||= @hosted_page.content.customer
+      @hosted_customer ||= @hosted_page.hosted_page.content.customer
     end
 
     def hosted_payment_method
@@ -57,7 +59,7 @@ module ChargebeeRails
     end
 
     def hosted_card
-      @hosted_card ||= @hosted_page.content.card
+      @hosted_card ||= @hosted_page.hosted_page.content.card
     end
 
     def hosted_billing_address
