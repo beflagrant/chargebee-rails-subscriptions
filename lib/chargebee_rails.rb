@@ -100,6 +100,7 @@ module ChargebeeRails
       first_name: customer.first_name,
       last_name: customer.last_name,
       email: customer.email,
+      phone: customer.phone,
       company: customer.company,
       vat_number: customer.vat_number
     }
