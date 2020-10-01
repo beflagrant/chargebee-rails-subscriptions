@@ -108,6 +108,18 @@ module ChargebeeRails
       update(status: chargebee_subscription.status)
     end
 
+    # Reactivates a subscription
+    # * *Args*    :
+    #   - +options+ -> the options hash allowed for subscription reactivation in chargebee
+    # For more details refer
+    # {Reactivate a subscription}[https://apidocs.chargebee.com/docs/api/subscriptions?lang=ruby#reactivate_a_subscription]
+    #
+    def reactivate(options={})
+      chargebee_subscription = ChargeBee::Subscription.reactivate(chargebee_id, options).subscription
+
+      update(status: chargebee_subscription.status)
+    end
+
     #
     # Estimates the subscription's renewal
     # * *Args*    :
