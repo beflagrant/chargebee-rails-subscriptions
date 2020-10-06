@@ -99,13 +99,13 @@ module ChargebeeRails
     def cancel(options={})
       options[:end_of_term] ||= ChargebeeRails.configuration.end_of_term
       chargebee_subscription = ChargeBee::Subscription.cancel(chargebee_id, options).subscription
-      update(status: chargebee_subscription.status)
+      update(subscription_attrs(chargebee_subscription, self.plan))
     end
 
     # Stop a scheduled cancellation of a subscription
     def stop_cancellation
       chargebee_subscription = ChargeBee::Subscription.remove_scheduled_cancellation(chargebee_id).subscription
-      update(status: chargebee_subscription.status)
+      update(subscription_attrs(chargebee_subscription, self.plan))
     end
 
     # Reactivates a subscription
@@ -116,8 +116,7 @@ module ChargebeeRails
     #
     def reactivate(options={})
       chargebee_subscription = ChargeBee::Subscription.reactivate(chargebee_id, options).subscription
-
-      update(status: chargebee_subscription.status)
+      update(subscription_attrs(chargebee_subscription, self.plan))
     end
 
     #
@@ -176,7 +175,7 @@ module ChargebeeRails
         plan_id: plan.id,
         plan_quantity: subscription.plan_quantity,
         status: subscription.status,
-        chargebee_data: chargebee_subscription_data(subscription)
+        chargebee_data: subscription
       }
     end
 
