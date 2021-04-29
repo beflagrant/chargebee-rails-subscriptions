@@ -84,7 +84,7 @@ module ChargebeeRails
     # * *Raises*  :
     #   - +ChargeBee::InvalidRequestError+ -> If customer is invalid
     #
-    def invoices
+    def list_invoices
       ChargeBee::Invoice.invoices_for_customer(chargebee_id).map(&:invoice)
     end
 
