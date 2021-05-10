@@ -13,6 +13,7 @@ require "chargebee_rails/customer"
 require "chargebee_rails/customer_builder"
 require "chargebee_rails/metered_billing"
 require "chargebee_rails/sync_plans"
+require "chargebee_rails/sync_coupons"
 
 
 module ChargebeeRails
