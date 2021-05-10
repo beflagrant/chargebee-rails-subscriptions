@@ -84,7 +84,7 @@ module ChargebeeRails
           discount_amount: coupon.discount_amount,
           discount_type: coupon.discount_type,
           duration_type: coupon.duration_type,
-          id: coupon.coupon.id,
+          id: coupon.id,
           name: coupon.name,
           plan_constraint: coupon.plan_constraint,
         }
