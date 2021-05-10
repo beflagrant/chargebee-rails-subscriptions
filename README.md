@@ -203,6 +203,21 @@ The plans can be synced to your application using the following command:
 **Note**: The archived plans will also be synced in this method.
 
 
+## Sync coupons
+
+Same as plans above, except this task syncs coupons
+
+The coupons can be synced to your application using the following command:
+
+```ruby
+
+    rake chargebee_rails:sync_coupons
+
+```
+
+
+**Note**: The archived coupons will also be synced in this method.
+
 ## Sync failed events
 
 Chargebee attempts to send webhook notifications for upto 2 days. After 2 days, if the webhook event has failed due to some reason, the webhook’s status is marked as “Failed” and further attempts are stopped.  Once the error has been fixed at your end, the rake task will sync the failed events with your application. The failed events will be selectively sent to the webhook handler as well as hook methods, provided the event does not have an outdated update.
