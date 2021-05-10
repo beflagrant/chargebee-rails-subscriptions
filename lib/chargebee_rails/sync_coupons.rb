@@ -9,7 +9,7 @@ module ChargebeeRails
 
   	def do_sync(create: true, update: true, delete: false)
   		self.get_coupons
-  		self.sync_coupons(create: create, update:u pdate, delete: delete)
+  		self.sync_coupons(create: create, update: update, delete: delete)
 
       return messages
   	end
